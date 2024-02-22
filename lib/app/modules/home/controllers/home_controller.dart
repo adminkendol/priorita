@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mario/app/constant/constants.dart';
+import 'package:mario/app/utils/notif.dart';
 import 'package:mario/app/widgets/info_snack.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
 
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
   RxString fcmToken = "Getting Firebase Token".obs;
@@ -30,18 +30,9 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
+    initialNotif();
     initialWeb_2();
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 
   void requestPermission() async {
@@ -53,13 +44,60 @@ class HomeController extends GetxController {
     ].request();
   }
 
-  initialNotif(){
-    
+  initialNotif() {
+    requestingPermissionForIOS();
+
+    var initializationSettingsAndroid =
+        const AndroidInitializationSettings('@mipmap/ic_launcher');
+
+    final InitializationSettings initializationSettings =
+        InitializationSettings(
+      android: initializationSettingsAndroid,
+    );
+
+    Notif().flutterLocalNotificationsPlugin.initialize(
+          initializationSettings,
+        );
+
+    FirebaseMessaging.onMessage.listen((message) {
+      print(message);
+      if (message.data.isNotEmpty) Notif().showNotification(message);
+    });
+
+    getTokenz();
+  }
+
+  requestingPermissionForIOS() async {
+    NotificationSettings settings = await _firebaseMessaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print('User granted permission');
+    } else if (settings.authorizationStatus ==
+        AuthorizationStatus.provisional) {
+      print('User granted provisional permission');
+    } else {
+      print('User declined or has not accepted permission');
+    }
+
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
+      alert: true, // Required to display a heads up notification
+      badge: true,
+      sound: true,
+    );
   }
 
   getTokenz() async {
     String? token = await _firebaseMessaging.getToken();
     // await prefs.setTokenFcm(token ?? "");
+    GetStorage().write('fcm', token);
     fcmToken.value = token!;
     print("TOKEN: $fcmToken");
     isToken.value = true;
