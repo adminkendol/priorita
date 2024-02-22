@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "694909536498",
+    "project_id": "priorita-d982c",
+    "storage_bucket": "priorita-d982c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694909536498:android:52aa3732251b5bf184286b",
+        "android_client_info": {
+          "package_name": "id.mariominardi.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpTodjJmxWmy3RFlrBOXvzLp1pSTvsTZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
