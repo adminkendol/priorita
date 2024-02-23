@@ -1,4 +1,3 @@
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -7,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mario/app/constant/constants.dart';
+import 'package:mario/app/data/providers/get_token_provider.dart';
 import 'package:mario/app/utils/notif.dart';
 import 'package:mario/app/widgets/info_snack.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -15,10 +15,12 @@ class HomeController extends GetxController {
   //TODO: Implement HomeController
 
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+  GetTokenProvider tokenProvider = Get.find<GetTokenProvider>();
 
   RxString fcmToken = "Getting Firebase Token".obs;
   RxBool isToken = false.obs;
   RxBool isDevice = false.obs;
+  RxBool isUpdateTokenFcm = false.obs;
 
   RxBool isLoading = false.obs;
   RxBool isError = false.obs;
@@ -95,7 +97,6 @@ class HomeController extends GetxController {
 
   getTokenz() async {
     String? token = await _firebaseMessaging.getToken();
-    // await prefs.setTokenFcm(token ?? "");
     GetStorage().write('fcm', token);
     fcmToken.value = token!;
     print("TOKEN: $fcmToken");
@@ -140,9 +141,16 @@ class HomeController extends GetxController {
         // return true to tell that we are handling the new window creation action
         return true;
       },
-      onLoadStop: (controller, url) {
+      onLoadStop: (controller, url) async {
         isLoading.value = false;
         urlNow.value = url.toString();
+        var noHp = await controller.evaluateJavascript(
+            source: "window.document.getElementById('tIdUserMember').value");
+        var cookies = await controller.evaluateJavascript(
+            source: "window.document.getElementById('tKeyCookie').value");
+        if (!isUpdateTokenFcm.value) {
+          updateToken(noHp, cookies);
+        }
       },
       onLoadStart: (controller, url) {
         isError.value = false;
@@ -213,5 +221,21 @@ class HomeController extends GetxController {
         }
       },
     );
+  }
+
+  updateToken(String noHp, String cookies) async {
+    var token = GetStorage().read('fcm');
+    print("param: $noHp | $token");
+    await tokenProvider.getXtoken().then((value) async {
+      await tokenProvider
+          .saveToken(
+              noHp: noHp,
+              tokenFcm: token,
+              cookies: cookies,
+              xToken: value.body!.response!.token)
+          .then((value) {
+        isUpdateTokenFcm.value = true;
+      });
+    });
   }
 }
