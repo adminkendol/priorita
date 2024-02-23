@@ -1,10 +1,11 @@
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mario/app/constant/constants.dart';
 import 'package:mario/app/data/providers/get_token_provider.dart';
 import 'package:mario/app/utils/notif.dart';
@@ -40,13 +41,15 @@ class HomeController extends GetxController {
     await [
       Permission.location,
       Permission.camera,
-      Permission.microphone,
+      // Permission.microphone,
       Permission.storage
     ].request();
   }
 
   initialNotif() {
-    requestingPermissionForIOS();
+    if (Platform.isIOS) {
+      requestingPermissionForIOS();
+    }
 
     var initializationSettingsAndroid =
         const AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -56,9 +59,11 @@ class HomeController extends GetxController {
       android: initializationSettingsAndroid,
     );
 
-    Notif().flutterLocalNotificationsPlugin.initialize(
-          initializationSettings,
-        );
+    if (Platform.isAndroid) {
+      Notif().flutterLocalNotificationsPlugin.initialize(
+            initializationSettings,
+          );
+    }
 
     FirebaseMessaging.onMessage.listen((message) {
       print(message);
@@ -79,12 +84,12 @@ class HomeController extends GetxController {
       sound: true,
     );
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      print('User granted permission');
+      print('IOS Notif:User granted permission');
     } else if (settings.authorizationStatus ==
         AuthorizationStatus.provisional) {
-      print('User granted provisional permission');
+      print('IOS Notif:User granted provisional permission');
     } else {
-      print('User declined or has not accepted permission');
+      print('IOS Notif:User declined or has not accepted permission');
     }
 
     await FirebaseMessaging.instance
@@ -176,49 +181,8 @@ class HomeController extends GetxController {
       },
       onGeolocationPermissionsShowPrompt:
           (InAppWebViewController controller, String origin) async {
-        bool? result = await showDialog<bool>(
-          context: Get.context!,
-          barrierDismissible: false, // user must tap button!
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Allow access location $origin'),
-              content: SingleChildScrollView(
-                child: ListBody(
-                  children: <Widget>[
-                    Text('Allow access location $origin'),
-                  ],
-                ),
-              ),
-              actions: <Widget>[
-                TextButton(
-                  child: Text(
-                    'Allow',
-                    style: GoogleFonts.montserrat(
-                        textStyle: const TextStyle(fontSize: 12)),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop(true);
-                  },
-                ),
-                TextButton(
-                  child: Text('Denied',
-                      style: GoogleFonts.montserrat(
-                          textStyle: const TextStyle(fontSize: 12))),
-                  onPressed: () {
-                    Navigator.of(context).pop(false);
-                  },
-                ),
-              ],
-            );
-          },
-        );
-        if (result!) {
-          return Future.value(GeolocationPermissionShowPromptResponse(
-              origin: origin, allow: true, retain: true));
-        } else {
-          return Future.value(GeolocationPermissionShowPromptResponse(
-              origin: origin, allow: false, retain: false));
-        }
+        return GeolocationPermissionShowPromptResponse(
+            origin: origin, allow: true, retain: true);
       },
     );
   }
@@ -226,16 +190,18 @@ class HomeController extends GetxController {
   updateToken(String noHp, String cookies) async {
     var token = GetStorage().read('fcm');
     print("param: $noHp | $token");
-    await tokenProvider.getXtoken().then((value) async {
-      await tokenProvider
-          .saveToken(
-              noHp: noHp,
-              tokenFcm: token,
-              cookies: cookies,
-              xToken: value.body!.response!.token)
-          .then((value) {
-        isUpdateTokenFcm.value = true;
+    if (token != null) {
+      await tokenProvider.getXtoken().then((value) async {
+        await tokenProvider
+            .saveToken(
+                noHp: noHp,
+                tokenFcm: token,
+                cookies: cookies,
+                xToken: value.body!.response!.token)
+            .then((value) {
+          isUpdateTokenFcm.value = true;
+        });
       });
-    });
+    }
   }
 }
