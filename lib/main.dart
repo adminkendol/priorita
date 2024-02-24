@@ -11,6 +11,7 @@ import 'app/routes/app_pages.dart';
 
 @pragma('vm:entry-point')
 Future<void> myBackgroundHandler(RemoteMessage message) async {
+  print('MSG NOTIF 1: $message');
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   return Notif().showNotification(message);
 }

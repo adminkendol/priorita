@@ -46,34 +46,43 @@ class HomeController extends GetxController {
     ].request();
   }
 
-  initialNotif() {
+  initialNotif() async {
     if (Platform.isIOS) {
       requestingPermissionForIOS();
     }
 
-    var initializationSettingsAndroid =
-        const AndroidInitializationSettings('@mipmap/ic_launcher');
-
-    final InitializationSettings initializationSettings =
-        InitializationSettings(
-      android: initializationSettingsAndroid,
-    );
-
     if (Platform.isAndroid) {
+      await requestNotificationPermissions();
+      var initializationSettingsAndroid =
+          const AndroidInitializationSettings('@mipmap/ic_launcher');
+
+      final InitializationSettings initializationSettings =
+          InitializationSettings(
+        android: initializationSettingsAndroid,
+      );
+
       Notif().flutterLocalNotificationsPlugin.initialize(
             initializationSettings,
           );
     }
 
     FirebaseMessaging.onMessage.listen((message) {
-      print(message);
+      print('MSG NOTIF 2: $message');
       if (message.data.isNotEmpty) Notif().showNotification(message);
     });
 
     getTokenz();
   }
 
+  Future<void> requestNotificationPermissions() async {
+    final PermissionStatus status = await Permission.notification.request();
+    if (status.isPermanentlyDenied) {
+      await openAppSettings();
+    }
+  }
+
   requestingPermissionForIOS() async {
+    FirebaseMessaging.instance.requestPermission();
     NotificationSettings settings = await _firebaseMessaging.requestPermission(
       alert: true,
       announcement: false,
@@ -101,11 +110,20 @@ class HomeController extends GetxController {
   }
 
   getTokenz() async {
+    // if (Platform.isIOS) {
+    // String? apnsToken = await _firebaseMessaging.getAPNSToken();
+    // GetStorage().write('fcm', apnsToken);
+    // fcmToken.value = apnsToken!;
+    // print("TOKEN: $fcmToken");
+    // isToken.value = true;
+    // }
+    // else {
     String? token = await _firebaseMessaging.getToken();
     GetStorage().write('fcm', token);
     fcmToken.value = token!;
     print("TOKEN: $fcmToken");
     isToken.value = true;
+    // }
   }
 
   initialWeb_2() {
@@ -190,7 +208,7 @@ class HomeController extends GetxController {
   updateToken(String noHp, String cookies) async {
     var token = GetStorage().read('fcm');
     print("param: $noHp | $token");
-    if (token != null) {
+    if (token != null && noHp.isNotEmpty) {
       await tokenProvider.getXtoken().then((value) async {
         await tokenProvider
             .saveToken(

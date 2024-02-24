@@ -24,8 +24,6 @@ class DefaultFirebaseOptions {
         return android;
       case TargetPlatform.iOS:
         return ios;
-      case TargetPlatform.macOS:
-        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -66,15 +64,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '694909536498',
     projectId: 'priorita-d982c',
     storageBucket: 'priorita-d982c.appspot.com',
-    iosBundleId: 'id.mariominardi.app.mario',
+    iosBundleId: 'id.mariominardi.app',
   );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCOUgVRKs2EfICGz0NC03YqAxTOiKR8GHM',
-    appId: '1:694909536498:ios:e66b74a3de5757b684286b',
-    messagingSenderId: '694909536498',
-    projectId: 'priorita-d982c',
-    storageBucket: 'priorita-d982c.appspot.com',
-    iosBundleId: 'id.mariominardi.app.mario.RunnerTests',
-  );
+  
 }

@@ -9,6 +9,8 @@ class Notif {
       FlutterLocalNotificationsPlugin();
 
   Future showNotification(RemoteMessage message) async {
+    print(message.data);
+
     if (Platform.isAndroid) {
       const AndroidNotificationChannel channel = AndroidNotificationChannel(
         'high_importance_channel', // id
@@ -21,7 +23,6 @@ class Notif {
               AndroidFlutterLocalNotificationsPlugin>()
           ?.createNotificationChannel(channel);
 
-      print(message.data);
       Map<String, dynamic> data = message.data;
       AndroidNotification? android = message.notification?.android;
       flutterLocalNotificationsPlugin.show(
@@ -57,6 +58,18 @@ class Notif {
             badge: true,
             sound: true,
           );
+
+      Map<String, dynamic> data = message.data;
+      flutterLocalNotificationsPlugin.show(
+        0,
+        data['title'],
+        data['note'],
+        const NotificationDetails(
+          iOS: DarwinNotificationDetails(
+              presentAlert: true, presentSound: true, presentBadge: true),
+        ),
+        //payload: 'Default_Sound',
+      );
     }
   }
 }
