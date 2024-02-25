@@ -52,18 +52,22 @@ class HomeController extends GetxController {
     }
 
     if (Platform.isAndroid) {
-      await requestNotificationPermissions();
-      var initializationSettingsAndroid =
-          const AndroidInitializationSettings('@mipmap/ic_launcher');
+      try {
+        await requestNotificationPermissions();
+        var initializationSettingsAndroid =
+            const AndroidInitializationSettings('@mipmap/ic_launcher');
 
-      final InitializationSettings initializationSettings =
-          InitializationSettings(
-        android: initializationSettingsAndroid,
-      );
+        final InitializationSettings initializationSettings =
+            InitializationSettings(
+          android: initializationSettingsAndroid,
+        );
 
-      Notif().flutterLocalNotificationsPlugin.initialize(
-            initializationSettings,
-          );
+        Notif().flutterLocalNotificationsPlugin.initialize(
+              initializationSettings,
+            );
+      } catch (e) {
+        initialNotif();
+      }
     }
 
     FirebaseMessaging.onMessage.listen((message) {
@@ -193,6 +197,10 @@ class HomeController extends GetxController {
           (InAppWebViewController controller, String origin) async {
         return GeolocationPermissionShowPromptResponse(
             origin: origin, allow: true, retain: true);
+      },
+      onGeolocationPermissionsHidePrompt:
+          (InAppWebViewController controller) async {
+        return;
       },
     );
   }
