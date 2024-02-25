@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mario/app/constant/constants.dart';
@@ -33,14 +34,22 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    initialNotif();
+    requestPermission();
     initialWeb_2();
     super.onInit();
   }
 
   void requestPermission() async {
-    await [Permission.location, Permission.camera, Permission.storage]
-        .request();
+    // await [Permission.location, Permission.camera, Permission.storage]
+    await [Permission.camera, Permission.storage].request().then((value) async {
+      if (Platform.isAndroid) {
+        await Geolocator.checkPermission();
+        await Geolocator.requestPermission();
+        await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high);
+      }
+      initialNotif();
+    });
   }
 
   initialNotif() async {
@@ -121,15 +130,14 @@ class HomeController extends GetxController {
     isToken.value = true;
   }
 
-  initialWeb_2() {
+  initialWeb_2() async {
     status.value = 'Please wait';
-    requestPermission();
     settings = InAppWebViewSettings(
       javaScriptEnabled: true,
       allowFileAccessFromFileURLs: true,
       allowUniversalAccessFromFileURLs: true,
       supportMultipleWindows: true,
-      geolocationEnabled: false,
+      geolocationEnabled: true,
       resourceCustomSchemes: ["mycustomscheme"],
     );
   }
@@ -197,10 +205,6 @@ class HomeController extends GetxController {
           (InAppWebViewController controller, String origin) async {
         return GeolocationPermissionShowPromptResponse(
             origin: origin, allow: true, retain: true);
-      },
-      onGeolocationPermissionsHidePrompt:
-          (InAppWebViewController controller) async {
-        return;
       },
     );
   }
