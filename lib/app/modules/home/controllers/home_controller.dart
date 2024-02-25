@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
@@ -38,15 +39,14 @@ class HomeController extends GetxController {
   }
 
   void requestPermission() async {
-    await [
-      Permission.location,
-      Permission.camera,
-      // Permission.microphone,
-      Permission.storage
-    ].request();
+    await [Permission.location, Permission.camera, Permission.storage]
+        .request();
   }
 
   initialNotif() async {
+    if (await FlutterAppBadger.isAppBadgeSupported()) {
+      FlutterAppBadger.updateBadgeCount(0);
+    }
     if (Platform.isIOS) {
       requestingPermissionForIOS();
     }
@@ -110,20 +110,11 @@ class HomeController extends GetxController {
   }
 
   getTokenz() async {
-    // if (Platform.isIOS) {
-    // String? apnsToken = await _firebaseMessaging.getAPNSToken();
-    // GetStorage().write('fcm', apnsToken);
-    // fcmToken.value = apnsToken!;
-    // print("TOKEN: $fcmToken");
-    // isToken.value = true;
-    // }
-    // else {
     String? token = await _firebaseMessaging.getToken();
     GetStorage().write('fcm', token);
     fcmToken.value = token!;
     print("TOKEN: $fcmToken");
     isToken.value = true;
-    // }
   }
 
   initialWeb_2() {
@@ -134,6 +125,7 @@ class HomeController extends GetxController {
       allowFileAccessFromFileURLs: true,
       allowUniversalAccessFromFileURLs: true,
       supportMultipleWindows: true,
+      geolocationEnabled: false,
       resourceCustomSchemes: ["mycustomscheme"],
     );
   }
