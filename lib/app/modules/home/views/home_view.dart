@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -27,6 +29,7 @@ class HomeView extends GetView<HomeController> {
           }
         },
         child: Scaffold(
+            resizeToAvoidBottomInset: Platform.isAndroid ? true : false,
             backgroundColor: bgLogin,
             body: Stack(
               children: [

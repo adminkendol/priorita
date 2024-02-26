@@ -34,6 +34,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
+    FocusManager.instance.primaryFocus?.unfocus();
     requestPermission();
     initialWeb_2();
     super.onInit();
@@ -174,7 +175,7 @@ class HomeController extends GetxController {
         var noHp = await controller.evaluateJavascript(
             source: "window.document.getElementById('tIdUserMember').value");
         var cookies = await controller.evaluateJavascript(
-            source: "window.document.getElementById('tKeyCookie').value");
+            source: "window.document.getElementById('tKeyCookie').value");            
         if (!isUpdateTokenFcm.value) {
           updateToken(noHp, cookies);
         }
