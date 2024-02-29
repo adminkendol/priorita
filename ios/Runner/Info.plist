@@ -31,11 +31,11 @@
 	<key>NSCameraUsageDescription</key>
 	<string>To capture profile photo please grant camera access</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app needs access to location when open and in the background.</string>
+	<string>The application can tell you the closest location of several store offline</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app needs access to location when in the background.</string>
+	<string>The application can tell you the closest location of several store offline</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs access to location when open.</string>
+	<string>The application can tell you the closest location of several store offline</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Flutter requires access to microphone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
