@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyA6JAvPKrXPTG0fwrFF_8HP723mG6OTXz0</string>
+	<string>AIzaSyCOUgVRKs2EfICGz0NC03YqAxTOiKR8GHM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>292398900142</string>
+	<string>694909536498</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>id.mariominardi.app</string>
 	<key>PROJECT_ID</key>
-	<string>mariominardipriorita</string>
+	<string>priorita-d982c</string>
 	<key>STORAGE_BUCKET</key>
-	<string>mariominardipriorita.appspot.com</string>
+	<string>priorita-d982c.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:292398900142:ios:884d371a1ef889fb6c9e3f</string>
+	<string>1:694909536498:ios:448b76665ff6205784286b</string>
 </dict>
 </plist>

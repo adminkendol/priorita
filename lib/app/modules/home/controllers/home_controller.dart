@@ -32,12 +32,28 @@ class HomeController extends GetxController {
   InAppWebViewController? conWeb2;
   RxString urlNow = ''.obs;
 
+  DateTime? currentBackPressTime;
+
   @override
   void onInit() {
     FocusManager.instance.primaryFocus?.unfocus();
-    requestPermission();
-    initialWeb_2();
+    checkInternet();
     super.onInit();
+  }
+
+  void checkInternet() async {
+    try {
+      final result = await InternetAddress.lookup(cekUrl);
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        print('connected');
+        isError.value = false;
+        requestPermission();
+        initialWeb_2();
+      }
+    } on SocketException catch (_) {
+      print('not connected');
+      isError.value = true;
+    }
   }
 
   void requestPermission() async {
@@ -132,8 +148,10 @@ class HomeController extends GetxController {
   }
 
   initialWeb_2() async {
+    isError.value = false;
     status.value = 'Please wait';
     settings = InAppWebViewSettings(
+      disableDefaultErrorPage: true,
       javaScriptEnabled: true,
       allowFileAccessFromFileURLs: true,
       allowUniversalAccessFromFileURLs: true,
@@ -175,7 +193,7 @@ class HomeController extends GetxController {
         var noHp = await controller.evaluateJavascript(
             source: "window.document.getElementById('tIdUserMember').value");
         var cookies = await controller.evaluateJavascript(
-            source: "window.document.getElementById('tKeyCookie').value");            
+            source: "window.document.getElementById('tKeyCookie').value");
         if (!isUpdateTokenFcm.value) {
           updateToken(noHp, cookies);
         }
@@ -188,11 +206,10 @@ class HomeController extends GetxController {
       onProgressChanged: (controller, progress) {
         progress < 100 ? isLoading.value = true : isLoading.value = false;
       },
-      onReceivedError: (controller, request, error) async {
-        isLoading.value = false;
-        isError.value = true;
-        InfoSnack().errorInfo('Server sedang ada perbaikan');
-      },
+      // onReceivedError: (controller, request, error) async {
+      // isLoading.value = false;
+      // isError.value = true;
+      // },
       onWebViewCreated: (InAppWebViewController con) {
         conWeb2 = con;
       },
@@ -226,5 +243,21 @@ class HomeController extends GetxController {
         });
       });
     }
+  }
+
+  Future<bool> onWillPop() async {
+    DateTime now = DateTime.now();
+    if (currentBackPressTime == null ||
+        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
+      currentBackPressTime = now;
+      if (await conWeb2!.canGoBack()) {
+        conWeb2!.goBack();
+        return Future.value(false);
+      } else {
+        InfoSnack().exitInfo('Untuk keluar, tekan back sekali lagi');
+        return Future.value(false);
+      }
+    }
+    return Future.value(true);
   }
 }

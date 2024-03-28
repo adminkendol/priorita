@@ -17,13 +17,21 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
         return ios;
+      case TargetPlatform.macOS:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -41,30 +49,20 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCDZaNfzt3u0s3blP4-9YkrOhcAbEGoUxk',
-    appId: '1:694909536498:web:d50482f2c782a97f84286b',
-    messagingSenderId: '694909536498',
-    projectId: 'priorita-d982c',
-    authDomain: 'priorita-d982c.firebaseapp.com',
-    storageBucket: 'priorita-d982c.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBpTodjJmxWmy3RFlrBOXvzLp1pSTvsTZg',
-    appId: '1:694909536498:android:52aa3732251b5bf184286b',
-    messagingSenderId: '694909536498',
-    projectId: 'priorita-d982c',
-    storageBucket: 'priorita-d982c.appspot.com',
+    apiKey: 'AIzaSyCy7BZ8iPg8ztjJRjwjRBBnyE1XSiEln9M',
+    appId: '1:292398900142:android:77cf950dcfc1e2ac6c9e3f',
+    messagingSenderId: '292398900142',
+    projectId: 'mariominardipriorita',
+    storageBucket: 'mariominardipriorita.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCOUgVRKs2EfICGz0NC03YqAxTOiKR8GHM',
-    appId: '1:694909536498:ios:29870f58ff8bfcad84286b',
-    messagingSenderId: '694909536498',
-    projectId: 'priorita-d982c',
-    storageBucket: 'priorita-d982c.appspot.com',
+    apiKey: 'AIzaSyA6JAvPKrXPTG0fwrFF_8HP723mG6OTXz0',
+    appId: '1:292398900142:ios:884d371a1ef889fb6c9e3f',
+    messagingSenderId: '292398900142',
+    projectId: 'mariominardipriorita',
+    storageBucket: 'mariominardipriorita.appspot.com',
     iosBundleId: 'id.mariominardi.app',
   );
-  
 }
