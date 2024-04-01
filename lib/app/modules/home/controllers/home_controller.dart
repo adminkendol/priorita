@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -13,7 +12,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mario/app/constant/constants.dart';
 import 'package:mario/app/data/providers/get_token_provider.dart';
-import 'package:mario/app/routes/app_pages.dart';
 import 'package:mario/app/utils/notif.dart';
 import 'package:mario/app/widgets/info_snack.dart';
 import 'package:permission_handler/permission_handler.dart';

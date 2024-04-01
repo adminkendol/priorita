@@ -2,14 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:mario/app/constant/app_colors.dart';
-import 'package:mario/app/constant/constants.dart';
-import 'package:mario/app/routes/app_pages.dart';
 import 'package:mario/app/widgets/warning_view.dart';
 
 import '../controllers/home_controller.dart';
