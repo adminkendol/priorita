@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -8,8 +10,10 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mario/app/constant/constants.dart';
 import 'package:mario/app/data/providers/get_token_provider.dart';
+import 'package:mario/app/routes/app_pages.dart';
 import 'package:mario/app/utils/notif.dart';
 import 'package:mario/app/widgets/info_snack.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -34,6 +38,9 @@ class HomeController extends GetxController {
 
   DateTime? currentBackPressTime;
 
+  RxBool isStarted = false.obs;
+  RxBool isConnected = false.obs;
+
   @override
   void onInit() {
     FocusManager.instance.primaryFocus?.unfocus();
@@ -41,18 +48,22 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
-  void checkInternet() async {
-    try {
-      final result = await InternetAddress.lookup(cekUrl);
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        print('connected');
-        isError.value = false;
-        requestPermission();
-        initialWeb_2();
-      }
-    } on SocketException catch (_) {
-      print('not connected');
-      isError.value = true;
+  Future<void> checkInternet() async {
+    await execute(InternetConnectionChecker());
+
+    // Create customized instance which can be registered via dependency injection
+    final InternetConnectionChecker customInstance =
+        InternetConnectionChecker.createInstance(
+      checkTimeout: const Duration(seconds: 1),
+      checkInterval: const Duration(seconds: 1),
+    );
+
+    // Check internet connection with created instance
+    await execute(customInstance);
+    if (!isError.value) {
+      requestPermission();
+      initialWeb_2();
+      isStarted.value = true;
     }
   }
 
@@ -158,6 +169,8 @@ class HomeController extends GetxController {
       supportMultipleWindows: true,
       geolocationEnabled: true,
       resourceCustomSchemes: ["mycustomscheme"],
+      // safeBrowsingEnabled: true,
+      // useOnLoadResource: false
     );
   }
 
@@ -167,52 +180,64 @@ class HomeController extends GetxController {
       initialUrlRequest: URLRequest(
         url: WebUri(webUrl),
       ),
-      onCreateWindow: (controller, createWindowAction) async {
-        HeadlessInAppWebView? headlessWebView;
-        headlessWebView = HeadlessInAppWebView(
-          windowId: createWindowAction.windowId,
-          onLoadStart: (controller, url) async {
-            url.printInfo(info: "urlInfo");
-            if (url != null) {
-              InAppBrowser.openWithSystemBrowser(
-                  url: url); // to open with the system browser
-              // or use the https://pub.dev/packages/url_launcher plugin
-            }
-            // dispose it immediately
-            await headlessWebView?.dispose();
-            headlessWebView = null;
-          },
-        );
-        headlessWebView?.run();
-        // return true to tell that we are handling the new window creation action
-        return true;
+      onWebViewCreated: (controller) async {
+        conWeb2 = controller;
+        // if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+          // await controller.startSafeBrowsing();
+        // }
       },
       onLoadStop: (controller, url) async {
         isLoading.value = false;
         urlNow.value = url.toString();
-        var noHp = await controller.evaluateJavascript(
-            source: "window.document.getElementById('tIdUserMember').value");
-        var cookies = await controller.evaluateJavascript(
-            source: "window.document.getElementById('tKeyCookie').value");
-        if (!isUpdateTokenFcm.value) {
-          updateToken(noHp, cookies);
+        print("urlNow ${urlNow.value}");
+        if (url ==
+            WebUri(
+                "file:///android_asset/flutter_assets/assets/html/error.html")) {
+          isError.value = true;
+        } else {
+          isError.value = false;
+          var noHp = await controller.evaluateJavascript(
+              source: "window.document.getElementById('tIdUserMember').value");
+          var cookies = await controller.evaluateJavascript(
+              source: "window.document.getElementById('tKeyCookie').value");
+          if (!isUpdateTokenFcm.value) {
+            if (noHp != null && cookies != null) {
+              updateToken(noHp, cookies);
+            }
+          }
         }
       },
-      onLoadStart: (controller, url) {
-        isError.value = false;
+      onLoadStart: (controller, url) async {
+        if (url ==
+            WebUri(
+                "file:///android_asset/flutter_assets/assets/html/error.html")) {
+          isError.value = true;
+        } else {
+          isError.value = false;
+        }
+        // isError.value = false;
         isLoading.value = true;
         urlNow.value = url.toString();
       },
       onProgressChanged: (controller, progress) {
         progress < 100 ? isLoading.value = true : isLoading.value = false;
       },
-      // onReceivedError: (controller, request, error) async {
+      onReceivedError: (controller, request, error) async {
+        if (Platform.isAndroid) {
+          controller.loadFile(assetFilePath: "assets/html/error.html");
+        }
+        isLoading.value = false;
+        isError.value = true;
+        print("isError 1 ${isError.value}");
+      },
+      // onReceivedHttpError: (controller, request, errorResponse) {
+      // if (Platform.isAndroid) {
+      // controller.loadFile(assetFilePath: "assets/html/error.html");
+      // }
       // isLoading.value = false;
       // isError.value = true;
+      // print("isError 2 ${isError.value}");
       // },
-      onWebViewCreated: (InAppWebViewController con) {
-        conWeb2 = con;
-      },
       onPermissionRequest: (controller, request) async {
         print(request);
         return PermissionResponse(
@@ -259,5 +284,60 @@ class HomeController extends GetxController {
       }
     }
     return Future.value(true);
+  }
+
+  Future<void> execute(
+    InternetConnectionChecker internetConnectionChecker,
+  ) async {
+    // Simple check to see if we have Internet
+    // ignore: avoid_print
+    print('''The statement 'this machine is connected to the Internet' is: ''');
+    isConnected.value = await InternetConnectionChecker().hasConnection;
+    // ignore: avoid_print
+    print(
+      isConnected.value.toString(),
+    );
+
+    // returns a bool
+
+    // We can also get an enum instead of a bool
+    // ignore: avoid_print
+    print(
+      'Current status: ${await InternetConnectionChecker().connectionStatus}',
+    );
+    // Prints either InternetConnectionStatus.connected
+    // or InternetConnectionStatus.disconnected
+
+    // actively listen for status updates
+    final StreamSubscription<InternetConnectionStatus> listener =
+        InternetConnectionChecker().onStatusChange.listen(
+      (InternetConnectionStatus status) {
+        switch (status) {
+          case InternetConnectionStatus.connected:
+            // ignore: avoid_print
+            print('Data connection is available.');
+            print("isStarted 1 ${isStarted.value}");
+            isConnected.value = true;
+            // isError.value = false;
+            break;
+          case InternetConnectionStatus.disconnected:
+            // ignore: avoid_print
+            print('You are disconnected from the internet.');
+            print("isStarted 2 ${isStarted.value}");
+            isError.value = true;
+            isConnected.value = false;
+            // if (Platform.isIOS) {
+            // isStarted.value
+            // ? conWeb2!.reload()
+            // : Get.offAllNamed(Routes.HOME);
+            // }
+            break;
+        }
+      },
+    );
+
+    // close listener after 30 seconds, so the program doesn't run forever
+    await Future<void>.delayed(const Duration(seconds: 30));
+    await listener.cancel();
   }
 }

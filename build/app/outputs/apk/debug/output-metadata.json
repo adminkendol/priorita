@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "id.mariominardi.app",
+  "variantName": "debug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 1,
+      "versionName": "1.0.8",
+      "outputFile": "priorita_debug_01-04-2024_V_1.0.8.apk"
+    }
+  ],
+  "elementType": "File"
+}

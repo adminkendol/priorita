@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:mario/app/constant/app_colors.dart';
+import 'package:mario/app/constant/constants.dart';
 import 'package:mario/app/routes/app_pages.dart';
 import 'package:mario/app/widgets/warning_view.dart';
 
@@ -36,20 +38,25 @@ class HomeView extends GetView<HomeController> {
             backgroundColor: bgLogin,
             body: Stack(
               children: [
+                // if (controller.isStarted.value)
                 Align(
                     alignment: Alignment.center,
-                    child: controller.isError.value
-                        ? WarningView(reload: () {
-                            if (controller.isError.value) {
-                              controller.isError.value = false;
-                              Get.offAllNamed(Routes.HOME);
-                              // controller.conWeb2!.reload();
-                            }
-                          })
-                        : Container(
-                            margin: EdgeInsets.only(
-                                top: !controller.isError.value ? 30 : 0),
-                            child: controller.webWidget_2())),
+                    child: Container(
+                        margin: EdgeInsets.only(
+                            top: !controller.isError.value ? 30 : 0),
+                        child: controller.webWidget_2())),
+                if (controller.isError.value)
+                  Align(
+                      alignment: Alignment.center,
+                      child: WarningView(reload: () {
+                        if (controller.isConnected.value) {
+                          if (controller.isError.value) {
+                            controller.isError.value = false;
+                            // Get.offAllNamed(Routes.HOME);
+                            controller.conWeb2!.goBack();
+                          }
+                        }
+                      })),
                 if (controller.isLoading.value)
                   Align(
                     alignment: Alignment.center,

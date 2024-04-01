@@ -302,6 +302,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "internet_connection_checker",
+      "rootUri": "file:///Users/deviosbangunindo/.pub-cache/hosted/pub.dev/internet_connection_checker-1.0.0+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "js",
       "rootUri": "file:///Users/deviosbangunindo/.pub-cache/hosted/pub.dev/js-0.6.7",
       "packageUri": "lib/",
@@ -554,7 +560,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2024-03-29T08:45:14.273497Z",
+  "generated": "2024-03-29T21:38:10.457402Z",
   "generator": "pub",
   "generatorVersion": "3.1.5"
 }
