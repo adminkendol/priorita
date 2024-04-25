@@ -160,10 +160,11 @@ class HomeController extends GetxController {
     isError.value = false;
     status.value = 'Please wait';
     settings = InAppWebViewSettings(
-      disableDefaultErrorPage: true,
+      disableDefaultErrorPage: false,
       javaScriptEnabled: true,
       allowFileAccessFromFileURLs: true,
       allowUniversalAccessFromFileURLs: true,
+      clearCache: true,
       supportMultipleWindows: true,
       geolocationEnabled: true,
       resourceCustomSchemes: ["mycustomscheme"],
@@ -181,7 +182,7 @@ class HomeController extends GetxController {
       onWebViewCreated: (controller) async {
         conWeb2 = controller;
         // if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
-          // await controller.startSafeBrowsing();
+        // await controller.startSafeBrowsing();
         // }
       },
       onLoadStop: (controller, url) async {
@@ -210,6 +211,8 @@ class HomeController extends GetxController {
             WebUri(
                 "file:///android_asset/flutter_assets/assets/html/error.html")) {
           isError.value = true;
+          url = WebUri(
+              "file:///android_asset/flutter_assets/assets/html/error.html");
         } else {
           isError.value = false;
         }
@@ -221,12 +224,19 @@ class HomeController extends GetxController {
         progress < 100 ? isLoading.value = true : isLoading.value = false;
       },
       onReceivedError: (controller, request, error) async {
+        print(
+            "errorCode ${error.description}"); //net::ERR_CONNECTION_TIMED_OUT//net::ERR_QUIC_PROTOCOL_ERROR
         if (Platform.isAndroid) {
-          controller.loadFile(assetFilePath: "assets/html/error.html");
+          if (error.description == "net::ERR_CONNECTION_TIMED_OUT" ||
+              error.description == "net::ERR_ADDRESS_UNREACHABLE" ||
+              error.description == "net::ERR_QUIC_PROTOCOL_ERROR" ||
+              error.description == "net::ERR_INTERNET_DISCONNECTED") {
+            controller.loadFile(assetFilePath: "assets/html/error.html");
+            isLoading.value = false;
+            isError.value = true;
+            print("isError 1 ${isError.value}");
+          }
         }
-        isLoading.value = false;
-        isError.value = true;
-        print("isError 1 ${isError.value}");
       },
       // onReceivedHttpError: (controller, request, errorResponse) {
       // if (Platform.isAndroid) {

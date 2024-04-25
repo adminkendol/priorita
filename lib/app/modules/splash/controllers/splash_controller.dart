@@ -26,7 +26,7 @@ class SplashController extends GetxController {
   }
 
   Future<void> initConnectivity() async {
-    isLoading.value = true;
+    isLoading.value = false;
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile) {
       lanjut();

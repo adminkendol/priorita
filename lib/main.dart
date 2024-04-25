@@ -24,7 +24,7 @@ void main() async {
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Mario Minardi Point Reward",
+      title: "MM Reward",
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
     ),

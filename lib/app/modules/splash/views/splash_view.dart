@@ -18,7 +18,11 @@ class SplashView extends GetView<SplashController> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset("assets/images/welcome.png"),
+            Image.asset(
+              "assets/images/logo.png",
+              width: 225,
+              height: 225,
+            ),
             if (controller.isLoading.value)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
