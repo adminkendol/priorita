@@ -1,9 +1,0 @@
-{
-    "response": {
-        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InByaW9yaXRhIn0.RtVwmvVdm2E4H4vfguseOYZvIDanWIvms_BKNVsUHYw"
-    },
-    "metadata": {
-        "message": "Ok",
-        "code": 200
-    }
-}
