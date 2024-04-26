@@ -1,0 +1,4 @@
+#Sat Apr 27 01:27:12 WIB 2024
+base.0=/Users/deviosbangunindo/project_flutter/mario/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

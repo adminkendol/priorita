@@ -21,6 +21,9 @@ void main() async {
   FirebaseMessaging.onBackgroundMessage(myBackgroundHandler);
 
   await GetStorage.init();
+
+  WidgetsFlutterBinding.ensureInitialized();
+  
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,

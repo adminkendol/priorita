@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -39,11 +41,20 @@ class HomeController extends GetxController {
   RxBool isStarted = false.obs;
   RxBool isConnected = false.obs;
 
+  GlobalKey webViewKey = GlobalKey();
+
   @override
   void onInit() {
     FocusManager.instance.primaryFocus?.unfocus();
     checkInternet();
     super.onInit();
+  }
+
+  Future<void> onReload() {
+    // one of these should work. uncomment and see which one works.
+    // conWeb2!.refresh();
+    conWeb2!.reload();
+    return Future.delayed(const Duration(seconds: 2));
   }
 
   Future<void> checkInternet() async {
@@ -160,6 +171,7 @@ class HomeController extends GetxController {
     isError.value = false;
     status.value = 'Please wait';
     settings = InAppWebViewSettings(
+      scrollbarFadingEnabled: true,
       disableDefaultErrorPage: false,
       javaScriptEnabled: true,
       allowFileAccessFromFileURLs: true,
@@ -168,22 +180,18 @@ class HomeController extends GetxController {
       supportMultipleWindows: true,
       geolocationEnabled: true,
       resourceCustomSchemes: ["mycustomscheme"],
-      // safeBrowsingEnabled: true,
-      // useOnLoadResource: false
     );
   }
 
   Widget webWidget_2() {
     return InAppWebView(
+      key: webViewKey,
       initialSettings: settings,
       initialUrlRequest: URLRequest(
         url: WebUri(webUrl),
       ),
       onWebViewCreated: (controller) async {
         conWeb2 = controller;
-        // if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
-        // await controller.startSafeBrowsing();
-        // }
       },
       onLoadStop: (controller, url) async {
         isLoading.value = false;
@@ -205,18 +213,10 @@ class HomeController extends GetxController {
             }
           }
         }
+        controller.evaluateJavascript(
+            source: "document.body.style.overflow = 'scroll';");
       },
       onLoadStart: (controller, url) async {
-        if (url ==
-            WebUri(
-                "file:///android_asset/flutter_assets/assets/html/error.html")) {
-          isError.value = true;
-          url = WebUri(
-              "file:///android_asset/flutter_assets/assets/html/error.html");
-        } else {
-          isError.value = false;
-        }
-        // isError.value = false;
         isLoading.value = true;
         urlNow.value = url.toString();
       },
@@ -230,22 +230,29 @@ class HomeController extends GetxController {
           if (error.description == "net::ERR_CONNECTION_TIMED_OUT" ||
               error.description == "net::ERR_ADDRESS_UNREACHABLE" ||
               error.description == "net::ERR_QUIC_PROTOCOL_ERROR" ||
+              error.description ==
+                  "net::ERR_NAME_NOT_RESOLVED" || //ERR_NAME_NOT_RESOLVED
               error.description == "net::ERR_INTERNET_DISCONNECTED") {
             controller.loadFile(assetFilePath: "assets/html/error.html");
             isLoading.value = false;
             isError.value = true;
             print("isError 1 ${isError.value}");
           }
+        } else {
+          // if (error.description == "The request timed out." ||
+          // error.description == "Could not connect to the server." ||
+          // error.description ==
+          // "The Internet connection appears to be offline.") {
+          // controller.loadFile(assetFilePath: "assets/html/error.html");//A server with the specified hostname could not be found.
+          isLoading.value = false;
+          isError.value = true;
+          print("isError 1 ${isError.value}");
+          // }
         }
       },
-      // onReceivedHttpError: (controller, request, errorResponse) {
-      // if (Platform.isAndroid) {
-      // controller.loadFile(assetFilePath: "assets/html/error.html");
-      // }
-      // isLoading.value = false;
-      // isError.value = true;
-      // print("isError 2 ${isError.value}");
-      // },
+      gestureRecognizers: Set()
+        ..add(Factory<VerticalDragGestureRecognizer>(
+            () => VerticalDragGestureRecognizer())),
       onPermissionRequest: (controller, request) async {
         print(request);
         return PermissionResponse(
@@ -333,6 +340,7 @@ class HomeController extends GetxController {
             print('You are disconnected from the internet.');
             print("isStarted 2 ${isStarted.value}");
             isError.value = true;
+            InfoSnack().exitInfo('You are disconnected from the internet.');
             isConnected.value = false;
             // if (Platform.isIOS) {
             // isStarted.value
