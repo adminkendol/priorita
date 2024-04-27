@@ -74,9 +74,16 @@
             android:name="flutterEmbedding"
             android:value="2" />
         <service
-            android:name="id.mariominardi.app.ForegroundService"        
+            android:name="com.mariominardi.ForegroundService"        
             android:exported="false"
             android:stopWithTask="false"/>
+        <!--<service
+            android:name="com.mariominardi.PushNotificationService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>-->
         <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
         <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
             <intent-filter>
