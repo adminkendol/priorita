@@ -1,17 +1,14 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mario/app/constant/constants.dart';
 import 'package:mario/app/data/providers/get_token_provider.dart';
 import 'package:mario/app/utils/notif.dart';
@@ -38,42 +35,11 @@ class HomeController extends GetxController {
 
   DateTime? currentBackPressTime;
 
-  RxBool isStarted = false.obs;
-  RxBool isConnected = false.obs;
-
-  GlobalKey webViewKey = GlobalKey();
-
   @override
   void onInit() {
-    FocusManager.instance.primaryFocus?.unfocus();
-    checkInternet();
+    initialNotif();
+    initialWeb_2();
     super.onInit();
-  }
-
-  Future<void> onReload() {
-    // one of these should work. uncomment and see which one works.
-    // conWeb2!.refresh();
-    conWeb2!.reload();
-    return Future.delayed(const Duration(seconds: 2));
-  }
-
-  Future<void> checkInternet() async {
-    await execute(InternetConnectionChecker());
-
-    // Create customized instance which can be registered via dependency injection
-    final InternetConnectionChecker customInstance =
-        InternetConnectionChecker.createInstance(
-      checkTimeout: const Duration(seconds: 1),
-      checkInterval: const Duration(seconds: 1),
-    );
-
-    // Check internet connection with created instance
-    await execute(customInstance);
-    if (!isError.value) {
-      requestPermission();
-      initialWeb_2();
-      isStarted.value = true;
-    }
   }
 
   void requestPermission() async {
@@ -89,50 +55,30 @@ class HomeController extends GetxController {
     });
   }
 
-  initialNotif() async {
-    if (await FlutterAppBadger.isAppBadgeSupported()) {
-      FlutterAppBadger.updateBadgeCount(0);
-    }
-    if (Platform.isIOS) {
-      requestingPermissionForIOS();
-    }
+  initialNotif() {
+    requestingPermissionForIOS();
 
-    if (Platform.isAndroid) {
-      try {
-        await requestNotificationPermissions();
-        var initializationSettingsAndroid =
-            const AndroidInitializationSettings('@mipmap/ic_launcher');
+    var initializationSettingsAndroid =
+        const AndroidInitializationSettings('@mipmap/ic_launcher');
 
-        final InitializationSettings initializationSettings =
-            InitializationSettings(
-          android: initializationSettingsAndroid,
+    final InitializationSettings initializationSettings =
+        InitializationSettings(
+      android: initializationSettingsAndroid,
+    );
+
+    Notif().flutterLocalNotificationsPlugin.initialize(
+          initializationSettings,
         );
 
-        Notif().flutterLocalNotificationsPlugin.initialize(
-              initializationSettings,
-            );
-      } catch (e) {
-        initialNotif();
-      }
-    }
-
     FirebaseMessaging.onMessage.listen((message) {
-      print('MSG NOTIF 2: $message');
+      print(message);
       if (message.data.isNotEmpty) Notif().showNotification(message);
     });
 
     getTokenz();
   }
 
-  Future<void> requestNotificationPermissions() async {
-    final PermissionStatus status = await Permission.notification.request();
-    if (status.isPermanentlyDenied) {
-      await openAppSettings();
-    }
-  }
-
   requestingPermissionForIOS() async {
-    FirebaseMessaging.instance.requestPermission();
     NotificationSettings settings = await _firebaseMessaging.requestPermission(
       alert: true,
       announcement: false,
@@ -143,12 +89,12 @@ class HomeController extends GetxController {
       sound: true,
     );
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      print('IOS Notif:User granted permission');
+      print('User granted permission');
     } else if (settings.authorizationStatus ==
         AuthorizationStatus.provisional) {
-      print('IOS Notif:User granted provisional permission');
+      print('User granted provisional permission');
     } else {
-      print('IOS Notif:User declined or has not accepted permission');
+      print('User declined or has not accepted permission');
     }
 
     await FirebaseMessaging.instance
@@ -167,31 +113,50 @@ class HomeController extends GetxController {
     isToken.value = true;
   }
 
-  initialWeb_2() async {
-    isError.value = false;
+  Future<void> onReload() {
+    // one of these should work. uncomment and see which one works.
+    // conWeb2!.refresh();
+    conWeb2!.reload();
+    return Future.delayed(const Duration(seconds: 2));
+  }
+
+  initialWeb_2() {
     status.value = 'Please wait';
+    requestPermission();
     settings = InAppWebViewSettings(
-      scrollbarFadingEnabled: true,
-      disableDefaultErrorPage: false,
       javaScriptEnabled: true,
       allowFileAccessFromFileURLs: true,
       allowUniversalAccessFromFileURLs: true,
-      clearCache: true,
       supportMultipleWindows: true,
-      geolocationEnabled: true,
       resourceCustomSchemes: ["mycustomscheme"],
     );
   }
 
   Widget webWidget_2() {
     return InAppWebView(
-      key: webViewKey,
       initialSettings: settings,
       initialUrlRequest: URLRequest(
         url: WebUri(webUrl),
       ),
-      onWebViewCreated: (controller) async {
-        conWeb2 = controller;
+      onCreateWindow: (controller, createWindowAction) async {
+        HeadlessInAppWebView? headlessWebView;
+        headlessWebView = HeadlessInAppWebView(
+          windowId: createWindowAction.windowId,
+          onLoadStart: (controller, url) async {
+            url.printInfo(info: "urlInfo");
+            if (url != null) {
+              InAppBrowser.openWithSystemBrowser(
+                  url: url); // to open with the system browser
+              // or use the https://pub.dev/packages/url_launcher plugin
+            }
+            // dispose it immediately
+            await headlessWebView?.dispose();
+            headlessWebView = null;
+          },
+        );
+        headlessWebView?.run();
+        // return true to tell that we are handling the new window creation action
+        return true;
       },
       onLoadStop: (controller, url) async {
         isLoading.value = false;
@@ -216,7 +181,8 @@ class HomeController extends GetxController {
         controller.evaluateJavascript(
             source: "document.body.style.overflow = 'scroll';");
       },
-      onLoadStart: (controller, url) async {
+      onLoadStart: (controller, url) {
+        isError.value = false;
         isLoading.value = true;
         urlNow.value = url.toString();
       },
@@ -250,39 +216,25 @@ class HomeController extends GetxController {
           // }
         }
       },
-      gestureRecognizers: Set()
-        ..add(Factory<VerticalDragGestureRecognizer>(
-            () => VerticalDragGestureRecognizer())),
+      onWebViewCreated: (InAppWebViewController con) {
+        conWeb2 = con;
+      },
       onPermissionRequest: (controller, request) async {
         print(request);
         return PermissionResponse(
             resources: request.resources,
             action: PermissionResponseAction.GRANT);
       },
+      gestureRecognizers: Set()
+        ..add(Factory<VerticalDragGestureRecognizer>(
+            () => VerticalDragGestureRecognizer())),
       onGeolocationPermissionsShowPrompt:
           (InAppWebViewController controller, String origin) async {
         return GeolocationPermissionShowPromptResponse(
             origin: origin, allow: true, retain: true);
       },
+      
     );
-  }
-
-  updateToken(String noHp, String cookies) async {
-    var token = GetStorage().read('fcm');
-    print("param: $noHp | $token");
-    if (token != null && noHp.isNotEmpty) {
-      await tokenProvider.getXtoken().then((value) async {
-        await tokenProvider
-            .saveToken(
-                noHp: noHp,
-                tokenFcm: token,
-                cookies: cookies,
-                xToken: value.body!.response!.token)
-            .then((value) {
-          isUpdateTokenFcm.value = true;
-        });
-      });
-    }
   }
 
   Future<bool> onWillPop() async {
@@ -294,66 +246,26 @@ class HomeController extends GetxController {
         conWeb2!.goBack();
         return Future.value(false);
       } else {
-        InfoSnack().exitInfo('Untuk keluar, tekan back sekali lagi');
+        InfoSnack().exitInfo('Press back again to exit');
         return Future.value(false);
       }
     }
     return Future.value(true);
   }
 
-  Future<void> execute(
-    InternetConnectionChecker internetConnectionChecker,
-  ) async {
-    // Simple check to see if we have Internet
-    // ignore: avoid_print
-    print('''The statement 'this machine is connected to the Internet' is: ''');
-    isConnected.value = await InternetConnectionChecker().hasConnection;
-    // ignore: avoid_print
-    print(
-      isConnected.value.toString(),
-    );
-
-    // returns a bool
-
-    // We can also get an enum instead of a bool
-    // ignore: avoid_print
-    print(
-      'Current status: ${await InternetConnectionChecker().connectionStatus}',
-    );
-    // Prints either InternetConnectionStatus.connected
-    // or InternetConnectionStatus.disconnected
-
-    // actively listen for status updates
-    final StreamSubscription<InternetConnectionStatus> listener =
-        InternetConnectionChecker().onStatusChange.listen(
-      (InternetConnectionStatus status) {
-        switch (status) {
-          case InternetConnectionStatus.connected:
-            // ignore: avoid_print
-            print('Data connection is available.');
-            print("isStarted 1 ${isStarted.value}");
-            isConnected.value = true;
-            // isError.value = false;
-            break;
-          case InternetConnectionStatus.disconnected:
-            // ignore: avoid_print
-            print('You are disconnected from the internet.');
-            print("isStarted 2 ${isStarted.value}");
-            isError.value = true;
-            InfoSnack().exitInfo('You are disconnected from the internet.');
-            isConnected.value = false;
-            // if (Platform.isIOS) {
-            // isStarted.value
-            // ? conWeb2!.reload()
-            // : Get.offAllNamed(Routes.HOME);
-            // }
-            break;
-        }
-      },
-    );
-
-    // close listener after 30 seconds, so the program doesn't run forever
-    await Future<void>.delayed(const Duration(seconds: 30));
-    await listener.cancel();
+  updateToken(String noHp, String cookies) async {
+    var token = GetStorage().read('fcm');
+    print("param: $noHp | $token");
+    await tokenProvider.getXtoken().then((value) async {
+      await tokenProvider
+          .saveToken(
+              noHp: noHp,
+              tokenFcm: token,
+              cookies: cookies,
+              xToken: value.body!.response!.token)
+          .then((value) {
+        isUpdateTokenFcm.value = true;
+      });
+    });
   }
 }
