@@ -1,0 +1,659 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.mariominardi"
+4    android:versionCode="9"
+5    android:versionName="1.0.13" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="34" />
+9-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:2:5-67
+11-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:2:22-64
+12    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+12-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:3:5-76
+12-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:3:22-73
+13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+13-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:4:5-79
+13-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:4:22-76
+14    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+14-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:5:5-81
+14-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:5:22-78
+15    <uses-permission
+15-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:6:5-106
+16        android:name="android.permission.READ_EXTERNAL_STORAGE"
+16-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:6:22-77
+17        android:maxSdkVersion="32" />
+17-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:6:78-104
+18    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+18-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:7:5-79
+18-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:7:22-76
+19    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+19-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:8:5-81
+19-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:8:22-78
+20    <uses-permission android:name="android.permission.CAMERA" />
+20-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:9:5-65
+20-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:9:22-62
+21    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+21-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:10:5-71
+21-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:10:22-68
+22    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+22-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:11:5-80
+22-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:11:22-77
+23    <uses-permission android:name="android.permission.VIDEO_CAPTURE" />
+23-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:12:5-72
+23-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:12:22-69
+24    <uses-permission android:name="android.permission.AUDIO_CAPTURE" />
+24-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:13:5-72
+24-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:13:22-69
+25    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+25-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:14:5-76
+25-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:14:22-73
+26    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+26-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:15:5-75
+26-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:15:22-72
+27    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+27-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:16:5-75
+27-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:16:22-72
+28    <!-- <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" /> -->
+29    <uses-permission android:name="android.permission.VIBRATE" />
+29-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:18:5-66
+29-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:18:22-63
+30    <!--
+31    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+32    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+33    -->
+34    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+34-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:21:5-76
+34-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:21:22-74
+35
+36    <uses-feature android:name="android.hardware.camera" />
+36-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:22:5-60
+36-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:22:19-57
+37
+38    <queries>
+38-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:9:5-13:15
+39        <intent>
+39-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:10:9-12:18
+40            <action android:name="android.support.customtabs.action.CustomTabsService" />
+40-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:11:13-90
+40-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:11:21-87
+41        </intent>
+42    </queries>
+43
+44    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+44-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:10:5-68
+44-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:10:22-65
+45    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+45-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:26:5-82
+45-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:26:22-79
+46
+47    <permission
+47-->[androidx.core:core:1.9.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/bd8529056bc8c349db80c74675036fa2/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+48        android:name="com.mariominardi.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+48-->[androidx.core:core:1.9.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/bd8529056bc8c349db80c74675036fa2/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+49        android:protectionLevel="signature" />
+49-->[androidx.core:core:1.9.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/bd8529056bc8c349db80c74675036fa2/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+50
+51    <uses-permission android:name="com.mariominardi.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- for android -->
+51-->[androidx.core:core:1.9.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/bd8529056bc8c349db80c74675036fa2/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+51-->[androidx.core:core:1.9.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/bd8529056bc8c349db80c74675036fa2/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+52    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
+53    <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
+54    <!-- <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> -->
+55    <!-- <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" /> -->
+56    <!-- for Samsung -->
+57    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+57-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:19:5-86
+57-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:19:22-83
+58    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
+58-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:20:5-87
+58-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:20:22-84
+59    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+59-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:23:5-81
+59-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:23:22-78
+60    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
+60-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:24:5-83
+60-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:24:22-80
+61    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+61-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:27:5-88
+61-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:27:22-85
+62    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
+62-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:5-92
+62-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:22-89
+63    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
+63-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:5-84
+63-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:22-81
+64    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
+64-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:5-83
+64-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:22-80
+65    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+65-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:5-91
+65-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:22-88
+66    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+66-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:5-92
+66-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:22-89
+67    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
+67-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:5-93
+67-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:22-90
+68    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
+68-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:5-73
+68-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:22-70
+69    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+69-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:5-82
+69-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:22-79
+70    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
+70-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:5-83
+70-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:22-80
+71    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+71-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:5-88
+71-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:22-85
+72    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
+72-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:5-89
+72-->[me.leolin:ShortcutBadger:1.1.22] /Users/deviosbangunindo/.gradle/caches/transforms-3/01538920c646b33ff6ccccefba65ce03/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:22-86
+73
+74    <application
+75        android:name="android.app.Application"
+75-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:25:9-42
+76        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+76-->[androidx.core:core:1.9.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/bd8529056bc8c349db80c74675036fa2/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+77        android:icon="@mipmap/ic_launcher"
+77-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:27:9-43
+78        android:label="MM Reward"
+78-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:24:9-34
+79        android:usesCleartextTraffic="true" >
+79-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:26:9-44
+80        <meta-data
+80-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:29:9-31:37
+81            android:name="firebase_messaging_auto_init_enabled"
+81-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:30:13-64
+82            android:value="false" />
+82-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:31:13-34
+83        <meta-data
+83-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:33:9-35:37
+84            android:name="firebase_analytics_collection_enabled"
+84-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:34:13-65
+85            android:value="false" />
+85-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:35:13-34
+86
+87        <activity
+87-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:37:9-70:20
+88            android:name="com.mariominardi.MainActivity"
+88-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:38:13-41
+89            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+89-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:42:13-163
+90            android:exported="true"
+90-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:39:13-36
+91            android:hardwareAccelerated="true"
+91-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:43:13-47
+92            android:launchMode="singleTop"
+92-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:40:13-43
+93            android:theme="@style/LaunchTheme"
+93-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:41:13-47
+94            android:windowSoftInputMode="adjustResize" >
+94-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:44:13-55
+95
+96            <!--
+97                 Specifies an Android theme to apply to this Activity as soon as
+98                 the Android process has started. This theme is visible to the user
+99                 while the Flutter UI initializes. After that, this theme continues
+100                 to determine the Window background behind the Flutter UI.
+101            -->
+102            <meta-data
+102-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:49:13-52:17
+103                android:name="io.flutter.embedding.android.NormalTheme"
+103-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:50:15-70
+104                android:resource="@style/NormalTheme" />
+104-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:51:15-52
+105
+106            <intent-filter>
+106-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:53:13-56:29
+107                <action android:name="android.intent.action.MAIN" />
+107-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:54:17-68
+107-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:54:25-66
+108
+109                <category android:name="android.intent.category.LAUNCHER" />
+109-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:55:17-76
+109-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:55:27-74
+110            </intent-filter>
+111            <intent-filter>
+111-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:58:13-61:29
+112                <action android:name="FLUTTER_NOTIFICATION_CLICK" />
+112-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:59:17-69
+112-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:59:25-66
+113
+114                <category android:name="android.intent.category.DEFAULT" />
+114-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:60:17-76
+114-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:60:27-73
+115            </intent-filter>
+116            <intent-filter>
+116-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:63:13-68:29
+117                <action android:name="android.intent.action.BOOT_COMPLETED" />
+117-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:64:17-78
+117-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:64:25-76
+118                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+118-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:65:17-83
+118-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:65:25-81
+119                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+119-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:66:17-82
+119-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:66:25-79
+120                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+120-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:67:17-81
+120-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:67:25-79
+121            </intent-filter>
+122        </activity>
+123        <!--
+124             Don't delete the meta-data below.
+125             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+126        -->
+127        <meta-data
+127-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:73:9-75:33
+128            android:name="flutterEmbedding"
+128-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:74:13-44
+129            android:value="2" />
+129-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:75:13-30
+130
+131        <service
+131-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:76:9-79:43
+132            android:name="com.mariominardi.ForegroundService"
+132-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:77:13-62
+133            android:exported="false"
+133-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:78:13-37
+134            android:stopWithTask="false" />
+134-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:79:13-41
+135        <!--
+136        <service
+137            android:name="com.mariominardi.PushNotificationService"
+138            android:exported="false">
+139            <intent-filter>
+140                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+141            </intent-filter>
+142        </service>
+143        -->
+144        <receiver
+144-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:87:9-131
+145            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver"
+145-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:87:44-128
+146            android:exported="false" />
+146-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:87:19-43
+147        <receiver
+147-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:88:9-95:20
+148            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
+148-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:88:44-132
+149            android:exported="false" >
+149-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:88:19-43
+150            <intent-filter>
+150-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:63:13-68:29
+151                <action android:name="android.intent.action.BOOT_COMPLETED" />
+151-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:64:17-78
+151-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:64:25-76
+152                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+152-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:65:17-83
+152-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:65:25-81
+153                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+153-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:66:17-82
+153-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:66:25-79
+154                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+154-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:67:17-81
+154-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:67:25-79
+155            </intent-filter>
+156        </receiver>
+157
+158        <provider
+159            android:name="com.pichillilorenzo.flutter_inappwebview_android.InAppWebViewFileProvider"
+159-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:97:17-105
+160            android:authorities="com.mariominardi.flutter_inappwebview_android.fileprovider"
+160-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:98:17-97
+161            android:exported="false"
+161-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:99:17-41
+162            android:grantUriPermissions="true" >
+162-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:100:17-51
+163            <meta-data
+163-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:101:17-103:62
+164                android:name="android.support.FILE_PROVIDER_PATHS"
+164-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:102:21-71
+165                android:resource="@xml/provider_paths" />
+165-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:103:21-59
+166        </provider>
+167
+168        <uses-library
+168-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:105:9-87
+169            android:name="org.apache.http.legacy"
+169-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:105:23-60
+170            android:required="false" />
+170-->/Users/deviosbangunindo/project_flutter/mario/android/app/src/main/AndroidManifest.xml:105:61-85
+171
+172        <activity
+172-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:16:9-20:47
+173            android:name="com.pichillilorenzo.flutter_inappwebview_android.in_app_browser.InAppBrowserActivity"
+173-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:17:13-112
+174            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
+174-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:18:13-137
+175            android:exported="false"
+175-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:19:13-37
+176            android:theme="@style/AppTheme" />
+176-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:20:13-44
+177        <activity
+177-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:21:9-24:55
+178            android:name="com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.ChromeCustomTabsActivity"
+178-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:22:13-120
+179            android:exported="false"
+179-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:23:13-37
+180            android:theme="@style/ThemeTransparent" />
+180-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:24:13-52
+181        <activity
+181-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:25:9-28:55
+182            android:name="com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.TrustedWebActivity"
+182-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:26:13-114
+183            android:exported="false"
+183-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:27:13-37
+184            android:theme="@style/ThemeTransparent" />
+184-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:28:13-52
+185        <activity
+185-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:29:9-33:55
+186            android:name="com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.ChromeCustomTabsActivitySingleInstance"
+186-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:30:13-134
+187            android:exported="false"
+187-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:31:13-37
+188            android:launchMode="singleInstance"
+188-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:32:13-48
+189            android:theme="@style/ThemeTransparent" />
+189-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:33:13-52
+190        <activity
+190-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:34:9-38:55
+191            android:name="com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.TrustedWebActivitySingleInstance"
+191-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:35:13-128
+192            android:exported="false"
+192-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:36:13-37
+193            android:launchMode="singleInstance"
+193-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:37:13-48
+194            android:theme="@style/ThemeTransparent" />
+194-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:38:13-52
+195
+196        <receiver
+196-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:40:9-43:40
+197            android:name="com.pichillilorenzo.flutter_inappwebview_android.chrome_custom_tabs.ActionBroadcastReceiver"
+197-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:41:13-119
+198            android:enabled="true"
+198-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:42:13-35
+199            android:exported="false" />
+199-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:43:13-37
+200
+201        <meta-data
+201-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:45:9-47:36
+202            android:name="io.flutter.embedded_views_preview"
+202-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:46:13-61
+203            android:value="true" />
+203-->[:flutter_inappwebview_android] /Users/deviosbangunindo/project_flutter/mario/build/flutter_inappwebview_android/intermediates/merged_manifest/release/AndroidManifest.xml:47:13-33
+204
+205        <service
+205-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:16:9-19:72
+206            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundService"
+206-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:17:13-107
+207            android:exported="false"
+207-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:18:13-37
+208            android:permission="android.permission.BIND_JOB_SERVICE" />
+208-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:19:13-69
+209        <service
+209-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:20:9-26:19
+210            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingService"
+210-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:21:13-97
+211            android:exported="false" >
+211-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:22:13-37
+212            <intent-filter>
+212-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:23:13-25:29
+213                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+213-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:24:17-78
+213-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:24:25-75
+214            </intent-filter>
+215        </service>
+216
+217        <receiver
+217-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:28:9-35:20
+218            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingReceiver"
+218-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:29:13-98
+219            android:exported="true"
+219-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:30:13-36
+220            android:permission="com.google.android.c2dm.permission.SEND" >
+220-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:31:13-73
+221            <intent-filter>
+221-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:32:13-34:29
+222                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+222-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:33:17-81
+222-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:33:25-78
+223            </intent-filter>
+224        </receiver>
+225
+226        <service
+226-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:37:9-41:19
+227            android:name="com.google.firebase.components.ComponentDiscoveryService"
+227-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:37:18-89
+228            android:directBootAware="true"
+228-->[com.google.firebase:firebase-common:20.4.2] /Users/deviosbangunindo/.gradle/caches/transforms-3/b29de336eedfa9390b65176ca920839a/transformed/jetified-firebase-common-20.4.2/AndroidManifest.xml:32:13-43
+229            android:exported="false" >
+229-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:56:13-37
+230            <meta-data
+230-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:38:13-40:85
+231                android:name="com.google.firebase.components:io.flutter.plugins.firebase.messaging.FlutterFirebaseAppRegistrar"
+231-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:39:17-128
+232                android:value="com.google.firebase.components.ComponentRegistrar" />
+232-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:40:17-82
+233            <meta-data
+233-->[:firebase_core] /Users/deviosbangunindo/project_flutter/mario/build/firebase_core/intermediates/merged_manifest/release/AndroidManifest.xml:11:13-13:85
+234                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+234-->[:firebase_core] /Users/deviosbangunindo/project_flutter/mario/build/firebase_core/intermediates/merged_manifest/release/AndroidManifest.xml:12:17-124
+235                android:value="com.google.firebase.components.ComponentRegistrar" />
+235-->[:firebase_core] /Users/deviosbangunindo/project_flutter/mario/build/firebase_core/intermediates/merged_manifest/release/AndroidManifest.xml:13:17-82
+236            <meta-data
+236-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:57:13-59:85
+237                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
+237-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:58:17-122
+238                android:value="com.google.firebase.components.ComponentRegistrar" />
+238-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:59:17-82
+239            <meta-data
+239-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:60:13-62:85
+240                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+240-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:61:17-119
+241                android:value="com.google.firebase.components.ComponentRegistrar" />
+241-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:62:17-82
+242            <meta-data
+242-->[com.google.firebase:firebase-iid:21.1.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/3f21b965f71e68004ea2d7ee43c76ccf/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:32:13-34:85
+243                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+243-->[com.google.firebase:firebase-iid:21.1.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/3f21b965f71e68004ea2d7ee43c76ccf/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:33:17-96
+244                android:value="com.google.firebase.components.ComponentRegistrar" />
+244-->[com.google.firebase:firebase-iid:21.1.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/3f21b965f71e68004ea2d7ee43c76ccf/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:34:17-82
+245            <meta-data
+245-->[com.google.firebase:firebase-installations:17.2.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/670db2e8877c8ac4ef322ed4c3620df5/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:15:13-17:85
+246                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
+246-->[com.google.firebase:firebase-installations:17.2.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/670db2e8877c8ac4ef322ed4c3620df5/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:16:17-130
+247                android:value="com.google.firebase.components.ComponentRegistrar" />
+247-->[com.google.firebase:firebase-installations:17.2.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/670db2e8877c8ac4ef322ed4c3620df5/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:17:17-82
+248            <meta-data
+248-->[com.google.firebase:firebase-installations:17.2.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/670db2e8877c8ac4ef322ed4c3620df5/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:18:13-20:85
+249                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+249-->[com.google.firebase:firebase-installations:17.2.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/670db2e8877c8ac4ef322ed4c3620df5/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:19:17-127
+250                android:value="com.google.firebase.components.ComponentRegistrar" />
+250-->[com.google.firebase:firebase-installations:17.2.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/670db2e8877c8ac4ef322ed4c3620df5/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:20:17-82
+251            <meta-data
+251-->[com.google.firebase:firebase-common-ktx:20.4.2] /Users/deviosbangunindo/.gradle/caches/transforms-3/5cf447b53140afab14b56a97eba55473/transformed/jetified-firebase-common-ktx-20.4.2/AndroidManifest.xml:12:13-14:85
+252                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+252-->[com.google.firebase:firebase-common-ktx:20.4.2] /Users/deviosbangunindo/.gradle/caches/transforms-3/5cf447b53140afab14b56a97eba55473/transformed/jetified-firebase-common-ktx-20.4.2/AndroidManifest.xml:13:17-116
+253                android:value="com.google.firebase.components.ComponentRegistrar" />
+253-->[com.google.firebase:firebase-common-ktx:20.4.2] /Users/deviosbangunindo/.gradle/caches/transforms-3/5cf447b53140afab14b56a97eba55473/transformed/jetified-firebase-common-ktx-20.4.2/AndroidManifest.xml:14:17-82
+254            <meta-data
+254-->[com.google.firebase:firebase-common:20.4.2] /Users/deviosbangunindo/.gradle/caches/transforms-3/b29de336eedfa9390b65176ca920839a/transformed/jetified-firebase-common-20.4.2/AndroidManifest.xml:35:13-37:85
+255                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+255-->[com.google.firebase:firebase-common:20.4.2] /Users/deviosbangunindo/.gradle/caches/transforms-3/b29de336eedfa9390b65176ca920839a/transformed/jetified-firebase-common-20.4.2/AndroidManifest.xml:36:17-109
+256                android:value="com.google.firebase.components.ComponentRegistrar" />
+256-->[com.google.firebase:firebase-common:20.4.2] /Users/deviosbangunindo/.gradle/caches/transforms-3/b29de336eedfa9390b65176ca920839a/transformed/jetified-firebase-common-20.4.2/AndroidManifest.xml:37:17-82
+257            <meta-data
+257-->[com.google.firebase:firebase-datatransport:18.1.7] /Users/deviosbangunindo/.gradle/caches/transforms-3/a0b6c7ab83afb0f48a5dd964ff7b6a0b/transformed/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:27:13-29:85
+258                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+258-->[com.google.firebase:firebase-datatransport:18.1.7] /Users/deviosbangunindo/.gradle/caches/transforms-3/a0b6c7ab83afb0f48a5dd964ff7b6a0b/transformed/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:28:17-115
+259                android:value="com.google.firebase.components.ComponentRegistrar" />
+259-->[com.google.firebase:firebase-datatransport:18.1.7] /Users/deviosbangunindo/.gradle/caches/transforms-3/a0b6c7ab83afb0f48a5dd964ff7b6a0b/transformed/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:29:17-82
+260        </service>
+261
+262        <provider
+262-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:43:9-47:38
+263            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider"
+263-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:44:13-102
+264            android:authorities="com.mariominardi.flutterfirebasemessaginginitprovider"
+264-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:45:13-88
+265            android:exported="false"
+265-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:46:13-37
+266            android:initOrder="99" />
+266-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:47:13-35
+267
+268        <service
+268-->[:geolocator_android] /Users/deviosbangunindo/project_flutter/mario/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:10:9-14:56
+269            android:name="com.baseflow.geolocator.GeolocatorLocationService"
+269-->[:geolocator_android] /Users/deviosbangunindo/project_flutter/mario/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:11:13-77
+270            android:enabled="true"
+270-->[:geolocator_android] /Users/deviosbangunindo/project_flutter/mario/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:12:13-35
+271            android:exported="false"
+271-->[:geolocator_android] /Users/deviosbangunindo/project_flutter/mario/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:13:13-37
+272            android:foregroundServiceType="location" />
+272-->[:geolocator_android] /Users/deviosbangunindo/project_flutter/mario/build/geolocator_android/intermediates/merged_manifest/release/AndroidManifest.xml:14:13-53
+273
+274        <receiver
+274-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:29:9-40:20
+275            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+275-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:30:13-78
+276            android:exported="true"
+276-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:31:13-36
+277            android:permission="com.google.android.c2dm.permission.SEND" >
+277-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:32:13-73
+278            <intent-filter>
+278-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:32:13-34:29
+279                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+279-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:33:17-81
+279-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:33:25-78
+280            </intent-filter>
+281
+282            <meta-data
+282-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:37:13-39:40
+283                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
+283-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:38:17-92
+284                android:value="true" />
+284-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:39:17-37
+285        </receiver>
+286        <!--
+287             FirebaseMessagingService performs security checks at runtime,
+288             but set to not exported to explicitly avoid allowing another app to call it.
+289        -->
+290        <service
+290-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:46:9-53:19
+291            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+291-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:47:13-82
+292            android:directBootAware="true"
+292-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:48:13-43
+293            android:exported="false" >
+293-->[com.google.firebase:firebase-messaging:23.3.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/a6e0cd5611717413bd86fc8664764889/transformed/jetified-firebase-messaging-23.3.1/AndroidManifest.xml:49:13-37
+294            <intent-filter android:priority="-500" >
+294-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:23:13-25:29
+295                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+295-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:24:17-78
+295-->[:firebase_messaging] /Users/deviosbangunindo/project_flutter/mario/build/firebase_messaging/intermediates/merged_manifest/release/AndroidManifest.xml:24:25-75
+296            </intent-filter>
+297        </service>
+298
+299        <provider
+299-->[com.google.firebase:firebase-common:20.4.2] /Users/deviosbangunindo/.gradle/caches/transforms-3/b29de336eedfa9390b65176ca920839a/transformed/jetified-firebase-common-20.4.2/AndroidManifest.xml:23:9-28:39
+300            android:name="com.google.firebase.provider.FirebaseInitProvider"
+300-->[com.google.firebase:firebase-common:20.4.2] /Users/deviosbangunindo/.gradle/caches/transforms-3/b29de336eedfa9390b65176ca920839a/transformed/jetified-firebase-common-20.4.2/AndroidManifest.xml:24:13-77
+301            android:authorities="com.mariominardi.firebaseinitprovider"
+301-->[com.google.firebase:firebase-common:20.4.2] /Users/deviosbangunindo/.gradle/caches/transforms-3/b29de336eedfa9390b65176ca920839a/transformed/jetified-firebase-common-20.4.2/AndroidManifest.xml:25:13-72
+302            android:directBootAware="true"
+302-->[com.google.firebase:firebase-common:20.4.2] /Users/deviosbangunindo/.gradle/caches/transforms-3/b29de336eedfa9390b65176ca920839a/transformed/jetified-firebase-common-20.4.2/AndroidManifest.xml:26:13-43
+303            android:exported="false"
+303-->[com.google.firebase:firebase-common:20.4.2] /Users/deviosbangunindo/.gradle/caches/transforms-3/b29de336eedfa9390b65176ca920839a/transformed/jetified-firebase-common-20.4.2/AndroidManifest.xml:27:13-37
+304            android:initOrder="100" />
+304-->[com.google.firebase:firebase-common:20.4.2] /Users/deviosbangunindo/.gradle/caches/transforms-3/b29de336eedfa9390b65176ca920839a/transformed/jetified-firebase-common-20.4.2/AndroidManifest.xml:28:13-36
+305
+306        <activity
+306-->[com.google.android.gms:play-services-base:18.1.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/1cf043d35c0b2b1d0a59f2d4fb136b65/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:20:9-22:45
+307            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+307-->[com.google.android.gms:play-services-base:18.1.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/1cf043d35c0b2b1d0a59f2d4fb136b65/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:20:19-85
+308            android:exported="false"
+308-->[com.google.android.gms:play-services-base:18.1.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/1cf043d35c0b2b1d0a59f2d4fb136b65/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:22:19-43
+309            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+309-->[com.google.android.gms:play-services-base:18.1.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/1cf043d35c0b2b1d0a59f2d4fb136b65/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:21:19-78
+310
+311        <meta-data
+311-->[com.google.android.gms:play-services-basement:18.1.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/98537e5ec70bbb9b95a3c4905239e936/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:21:9-23:69
+312            android:name="com.google.android.gms.version"
+312-->[com.google.android.gms:play-services-basement:18.1.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/98537e5ec70bbb9b95a3c4905239e936/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:22:13-58
+313            android:value="@integer/google_play_services_version" />
+313-->[com.google.android.gms:play-services-basement:18.1.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/98537e5ec70bbb9b95a3c4905239e936/transformed/jetified-play-services-basement-18.1.0/AndroidManifest.xml:23:13-66
+314
+315        <uses-library
+315-->[androidx.window:window:1.0.0-beta04] /Users/deviosbangunindo/.gradle/caches/transforms-3/18aed9bf87fc054bde2369bbce815f68/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+316            android:name="androidx.window.extensions"
+316-->[androidx.window:window:1.0.0-beta04] /Users/deviosbangunindo/.gradle/caches/transforms-3/18aed9bf87fc054bde2369bbce815f68/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+317            android:required="false" />
+317-->[androidx.window:window:1.0.0-beta04] /Users/deviosbangunindo/.gradle/caches/transforms-3/18aed9bf87fc054bde2369bbce815f68/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+318        <uses-library
+318-->[androidx.window:window:1.0.0-beta04] /Users/deviosbangunindo/.gradle/caches/transforms-3/18aed9bf87fc054bde2369bbce815f68/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+319            android:name="androidx.window.sidecar"
+319-->[androidx.window:window:1.0.0-beta04] /Users/deviosbangunindo/.gradle/caches/transforms-3/18aed9bf87fc054bde2369bbce815f68/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+320            android:required="false" />
+320-->[androidx.window:window:1.0.0-beta04] /Users/deviosbangunindo/.gradle/caches/transforms-3/18aed9bf87fc054bde2369bbce815f68/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+321
+322        <provider
+322-->[androidx.emoji2:emoji2:1.2.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/3575f8ed23a71f7451e37a6f92230407/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+323            android:name="androidx.startup.InitializationProvider"
+323-->[androidx.emoji2:emoji2:1.2.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/3575f8ed23a71f7451e37a6f92230407/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+324            android:authorities="com.mariominardi.androidx-startup"
+324-->[androidx.emoji2:emoji2:1.2.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/3575f8ed23a71f7451e37a6f92230407/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+325            android:exported="false" >
+325-->[androidx.emoji2:emoji2:1.2.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/3575f8ed23a71f7451e37a6f92230407/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+326            <meta-data
+326-->[androidx.emoji2:emoji2:1.2.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/3575f8ed23a71f7451e37a6f92230407/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+327                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+327-->[androidx.emoji2:emoji2:1.2.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/3575f8ed23a71f7451e37a6f92230407/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+328                android:value="androidx.startup" />
+328-->[androidx.emoji2:emoji2:1.2.0] /Users/deviosbangunindo/.gradle/caches/transforms-3/3575f8ed23a71f7451e37a6f92230407/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+329            <meta-data
+329-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/893cc0c27c498bc7788946124c0febe4/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+330                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+330-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/893cc0c27c498bc7788946124c0febe4/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+331                android:value="androidx.startup" />
+331-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/deviosbangunindo/.gradle/caches/transforms-3/893cc0c27c498bc7788946124c0febe4/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+332        </provider>
+333
+334        <service
+334-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/deviosbangunindo/.gradle/caches/transforms-3/86c20d8095db21f2767217191f31eb82/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:28:9-34:19
+335            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+335-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/deviosbangunindo/.gradle/caches/transforms-3/86c20d8095db21f2767217191f31eb82/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:29:13-103
+336            android:exported="false" >
+336-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/deviosbangunindo/.gradle/caches/transforms-3/86c20d8095db21f2767217191f31eb82/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:30:13-37
+337            <meta-data
+337-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/deviosbangunindo/.gradle/caches/transforms-3/86c20d8095db21f2767217191f31eb82/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:31:13-33:39
+338                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+338-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/deviosbangunindo/.gradle/caches/transforms-3/86c20d8095db21f2767217191f31eb82/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:32:17-94
+339                android:value="cct" />
+339-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/deviosbangunindo/.gradle/caches/transforms-3/86c20d8095db21f2767217191f31eb82/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:33:17-36
+340        </service>
+341        <service
+341-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/deviosbangunindo/.gradle/caches/transforms-3/bb3c9b1439bebc5eb1722e0428191017/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:26:9-30:19
+342            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+342-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/deviosbangunindo/.gradle/caches/transforms-3/bb3c9b1439bebc5eb1722e0428191017/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:27:13-117
+343            android:exported="false"
+343-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/deviosbangunindo/.gradle/caches/transforms-3/bb3c9b1439bebc5eb1722e0428191017/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:28:13-37
+344            android:permission="android.permission.BIND_JOB_SERVICE" >
+344-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/deviosbangunindo/.gradle/caches/transforms-3/bb3c9b1439bebc5eb1722e0428191017/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:29:13-69
+345        </service>
+346
+347        <receiver
+347-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/deviosbangunindo/.gradle/caches/transforms-3/bb3c9b1439bebc5eb1722e0428191017/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:32:9-34:40
+348            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+348-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/deviosbangunindo/.gradle/caches/transforms-3/bb3c9b1439bebc5eb1722e0428191017/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:33:13-132
+349            android:exported="false" />
+349-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/deviosbangunindo/.gradle/caches/transforms-3/bb3c9b1439bebc5eb1722e0428191017/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:34:13-37
+350    </application>
+351
+352</manifest>

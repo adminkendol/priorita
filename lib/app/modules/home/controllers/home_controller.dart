@@ -35,6 +35,8 @@ class HomeController extends GetxController {
 
   DateTime? currentBackPressTime;
 
+  RxBool isHomePage = false.obs;
+
   @override
   void onInit() {
     initialNotif();
@@ -45,12 +47,12 @@ class HomeController extends GetxController {
   void requestPermission() async {
     // await [Permission.location, Permission.camera, Permission.storage]
     await [Permission.camera, Permission.storage].request().then((value) async {
-      if (Platform.isAndroid) {
-        await Geolocator.checkPermission();
-        await Geolocator.requestPermission();
-        await Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.high);
-      }
+      // if (Platform.isAndroid) {
+      await Geolocator.checkPermission();
+      await Geolocator.requestPermission();
+      await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      // }
       initialNotif();
     });
   }
@@ -172,6 +174,10 @@ class HomeController extends GetxController {
               source: "window.document.getElementById('tIdUserMember').value");
           var cookies = await controller.evaluateJavascript(
               source: "window.document.getElementById('tKeyCookie').value");
+          // if (noHp != '') {
+          // isHomePage.value = true;
+          // }
+          // noHp.printInfo('noHp: $noHp || ${isHomePage.value}');
           if (!isUpdateTokenFcm.value) {
             if (noHp != null && cookies != null) {
               updateToken(noHp, cookies);
@@ -230,10 +236,13 @@ class HomeController extends GetxController {
             () => VerticalDragGestureRecognizer())),
       onGeolocationPermissionsShowPrompt:
           (InAppWebViewController controller, String origin) async {
-        return GeolocationPermissionShowPromptResponse(
-            origin: origin, allow: true, retain: true);
+        if (Platform.isAndroid) {
+          return GeolocationPermissionShowPromptResponse(
+              origin: origin, allow: true, retain: true);
+        } else {
+          return null;
+        }
       },
-      
     );
   }
 
