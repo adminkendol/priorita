@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -5,13 +6,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mario/app/constant/constants.dart';
 import 'package:mario/app/data/providers/get_token_provider.dart';
-import 'package:mario/app/utils/notif.dart';
+import 'package:mario/app/routes/app_pages.dart';
 import 'package:mario/app/widgets/info_snack.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -37,8 +37,11 @@ class HomeController extends GetxController {
 
   RxBool isHomePage = false.obs;
 
+  final isNotif = "".obs;
+
   @override
   void onInit() {
+    isNotif(Get.parameters['isNotif']);
     initialNotif();
     initialWeb_2();
     super.onInit();
@@ -58,25 +61,6 @@ class HomeController extends GetxController {
   }
 
   initialNotif() {
-    requestingPermissionForIOS();
-
-    var initializationSettingsAndroid =
-        const AndroidInitializationSettings('@mipmap/ic_launcher');
-
-    final InitializationSettings initializationSettings =
-        InitializationSettings(
-      android: initializationSettingsAndroid,
-    );
-
-    Notif().flutterLocalNotificationsPlugin.initialize(
-          initializationSettings,
-        );
-
-    FirebaseMessaging.onMessage.listen((message) {
-      print(message);
-      if (message.data.isNotEmpty) Notif().showNotification(message);
-    });
-
     getTokenz();
   }
 
@@ -138,7 +122,7 @@ class HomeController extends GetxController {
     return InAppWebView(
       initialSettings: settings,
       initialUrlRequest: URLRequest(
-        url: WebUri(webUrl),
+        url: WebUri(isNotif != '1'.obs ? webUrl : webNotifUrl),
       ),
       onCreateWindow: (controller, createWindowAction) async {
         HeadlessInAppWebView? headlessWebView;
@@ -248,15 +232,20 @@ class HomeController extends GetxController {
 
   Future<bool> onWillPop() async {
     DateTime now = DateTime.now();
-    if (currentBackPressTime == null ||
-        now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
-      currentBackPressTime = now;
-      if (await conWeb2!.canGoBack()) {
-        conWeb2!.goBack();
-        return Future.value(false);
-      } else {
-        InfoSnack().exitInfo('Press back again to exit');
-        return Future.value(false);
+    if (isNotif == '1'.obs) {
+      Get.offAllNamed(Routes.HOME, parameters: {"isNotif": '0'});
+      return Future.value(false);
+    } else {
+      if (currentBackPressTime == null ||
+          now.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
+        currentBackPressTime = now;
+        if (await conWeb2!.canGoBack()) {
+          conWeb2!.goBack();
+          return Future.value(false);
+        } else {
+          InfoSnack().exitInfo('Press back again to exit');
+          return Future.value(false);
+        }
       }
     }
     return Future.value(true);
