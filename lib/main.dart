@@ -91,7 +91,7 @@ void main() async {
   if (notificationAppLaunchDetails != null) {
     if (notificationAppLaunchDetails.notificationResponse != null) {
       try {
-        payload = notificationAppLaunchDetails!.notificationResponse!.payload;
+        payload = notificationAppLaunchDetails.notificationResponse!.payload;
         print("PAYLOAD: $payload");
       } on Exception catch (e) {
         print("PAYLOAD ERROR: $e");
