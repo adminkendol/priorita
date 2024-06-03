@@ -8,6 +8,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:mario/app/routes/app_pages_notif.dart';
 import 'package:mario/app/utils/notif.dart';
 import 'package:mario/firebase_options.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'app/routes/app_pages.dart';
 
@@ -71,6 +72,11 @@ requestingPermissionForIOS() async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Permission.notification.isDenied.then((value) {
+    if (value) {
+      Permission.notification.request();
+    }
+  });
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(myBackgroundHandler);
 

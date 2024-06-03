@@ -42,7 +42,6 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     isNotif(Get.parameters['isNotif']);
-    initialNotif();
     initialWeb_2();
     super.onInit();
   }
@@ -56,39 +55,8 @@ class HomeController extends GetxController {
       await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
       // }
-      initialNotif();
+      getTokenz();
     });
-  }
-
-  initialNotif() {
-    getTokenz();
-  }
-
-  requestingPermissionForIOS() async {
-    NotificationSettings settings = await _firebaseMessaging.requestPermission(
-      alert: true,
-      announcement: false,
-      badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-      sound: true,
-    );
-    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      print('User granted permission');
-    } else if (settings.authorizationStatus ==
-        AuthorizationStatus.provisional) {
-      print('User granted provisional permission');
-    } else {
-      print('User declined or has not accepted permission');
-    }
-
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
-      alert: true, // Required to display a heads up notification
-      badge: true,
-      sound: true,
-    );
   }
 
   getTokenz() async {
@@ -114,6 +82,7 @@ class HomeController extends GetxController {
       allowFileAccessFromFileURLs: true,
       allowUniversalAccessFromFileURLs: true,
       supportMultipleWindows: true,
+      // clearCache: true,
       resourceCustomSchemes: ["mycustomscheme"],
     );
   }
@@ -158,13 +127,20 @@ class HomeController extends GetxController {
               source: "window.document.getElementById('tIdUserMember').value");
           var cookies = await controller.evaluateJavascript(
               source: "window.document.getElementById('tKeyCookie').value");
+          var isLogin = await controller.evaluateJavascript(
+              source: "window.document.getElementById('IsLogin').value");
           // if (noHp != '') {
           // isHomePage.value = true;
           // }
           // noHp.printInfo('noHp: $noHp || ${isHomePage.value}');
+          if (isLogin == '0') {
+            isUpdateTokenFcm = false.obs;
+          }
           if (!isUpdateTokenFcm.value) {
             if (noHp != null && cookies != null) {
-              updateToken(noHp, cookies);
+              if (noHp != '') {
+                updateToken(noHp, cookies);
+              }
             }
           }
         }
